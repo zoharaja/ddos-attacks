@@ -1,6 +1,7 @@
 # ddos-attacks
 
 **Network-Based Attack for Container (Zoha Raja): ICMP Ping Flood Attack**
+
 For the network-based attack for a container, I chose to demonstrate the execution and mitigation of an ICMP flood attack. An IDPS is launched inside of a Docker container, and it monitors ping traffic on the loopback (lo) interface. The IDPS detects ICMP flood attacks and automatically mitigates them by dropping incoming ICMP echo-requests and terminating the active processes. The incoming packets and their mitigation are logged into a SQLite database.
 
 **Files**
