@@ -6,16 +6,18 @@ For the network-based attack for a container, I chose to demonstrate the executi
 **Files**
 -	idps.py: Python script to mitigate ICMP flood attacks
 -	Dockerfile: Used to build a docker container with necessary dependencies
-Requirements:
+  
+**Requirements:**
 -	Docker application
 The following dependencies will be installed automatically upon building the Docker container:
--	Python 3.10
--	Scapy
--	iptables
--	sqlite3
--	iputils-ping
--	libcap2-bin
--	libcap-dev
+
+         -	Python 3.10
+         -	Scapy
+         -	iptables
+         -	sqlite3
+         -	iputils-ping
+         -	libcap2-bin
+         -	libcap-dev
 
 **Execution instructions**
 1.	Download idps.py and Dockerfile
