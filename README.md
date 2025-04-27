@@ -74,11 +74,11 @@ The following dependencies will be installed automatically upon building the Doc
 4.	In terminal 1, navigate to the directory containing idps.py and Dockerfile
 6.	Also, in terminal 1, build the container by entering the following command:
    
-         docker build -t icmp – idps .
+         docker build -t icmp-idps .
 
 8.	Finally, in terminal 1, start the IDPS by entering the following command:
    
-         docker run –rm -v "$(pwd)/data:/data" –cap-add=NET_ADMIN –cap-add=NET_RAW icmp-idps
+         docker run -rm -v "$(pwd)/data:/data" -cap-add=NET_ADMIN -cap-add=NET_RAW icmp-idps
   	
 10.	In terminal 2, start the ICMP flood attack by entering the following command:
     
