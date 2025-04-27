@@ -86,7 +86,7 @@ The following dependencies will be installed automatically upon building the Doc
 
 12.	To view the events logged in the database, execute the following command in terminal 2:
     
-          sqlite3. /data/icmp_logs.db "SELECT * FROM icmp_events;"
+          sqlite3 ./data/icmp_logs.db "SELECT * FROM icmp_events;"
    	
 *********************************************************************************************************************************************************************************************
 
