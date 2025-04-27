@@ -1,4 +1,49 @@
 # ddos-attacks
+## **Fork Bomb Attack Detection and Prevention (Hafsah Iqbal)**
+
+For the demonstration of the **Fork Bomb Attack**, I will show how the system detects and mitigates the attack within a Docker container. The IDPS (Intrusion Detection and Prevention System) monitors the number of processes running on the system and can automatically terminate malicious processes if an abnormal number is detected, preventing a system crash caused by the fork bomb.
+
+**Files**
+- `monitor.py`: Python script that detects and mitigates the fork bomb attack.
+- `forkbomb.sh`: Bash script to create a fork bomb by continuously forking new processes.
+
+**Requirements:**
+- Docker application
+- Python 3.x
+- psutil library for Python (installed using `pip install psutil`)
+
+**Execution Instructions**
+1. Start by building the Docker container and running it:
+    ```bash
+    docker build -t forkbomb-container .
+    docker run -it forkbomb-container
+    ```
+
+2. Inside the container, open and execute the Fork Bomb script:
+    a) Open the `forkbomb.sh` script in nano or vi:
+    ```bash
+    nano /usr/local/bin/forkbomb.sh
+    ```
+
+    b) Make the script executable:
+    ```bash
+    chmod +x /usr/local/bin/forkbomb.sh
+    ```
+
+    c) Run the Fork Bomb script:
+    ```bash
+    /usr/local/bin/forkbomb.sh
+    ```
+
+3. On the host machine, start the monitoring system:
+    ```bash
+    python3 monitor.py
+    ```
+
+4. Show the logs for the attack:
+    ```bash
+    cat attack_log.txt
+    ```
 
 **Network-Based Attack for Container (Zoha Raja): ICMP Ping Flood Attack**
 
