@@ -78,7 +78,7 @@ The following dependencies will be installed automatically upon building the Doc
 
 8.	Finally, in terminal 1, start the IDPS by entering the following command:
    
-         docker run -rm -v "$(pwd)/data:/data" -cap-add=NET_ADMIN -cap-add=NET_RAW icmp-idps
+         docker run --rm -v "$(pwd)/data:/data" --cap-add=NET_ADMIN --cap-add=NET_RAW icmp-idps
   	
 10.	In terminal 2, start the ICMP flood attack by entering the following command:
     
