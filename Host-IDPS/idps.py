@@ -210,28 +210,12 @@ def oom_killer_loop():
 
 # This function intializes the monitoring dashboard for the IDPS using Flask
 @app.route('/')
-def dashboard():
-    process_filter = request.args.get('process', '').strip()
-    min_rss = request.args.get('min_rss', '').strip()
-    max_rss = request.args.get('max_rss', '').strip()
+def dashboard():   
 
     query = "SELECT * FROM oom_log WHERE 1=1"
     params = []
 
-    # if process_filter:
-    #     query += " AND name LIKE ?"
-    #     params.append(f"%{process_filter}%")
-
-    # if min_rss.isdigit():
-    #     query += " AND rss_kb >= ?"
-    #     params.append(int(min_rss))
-
-    # if max_rss.isdigit():
-    #     query += " AND rss_kb <= ?"
-    #     params.append(int(max_rss))
-
     query += " ORDER BY timestamp DESC"
-
     conn = sqlite3.connect(SQLITE_PATH)
     cursor = conn.cursor()
     cursor.execute(query, params)
