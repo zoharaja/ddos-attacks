@@ -1,5 +1,5 @@
 # ddos-attacks
-## **Fork Bomb Attack Detection and Prevention (Hafsah Iqbal)**
+**Fork Bomb Attack Detection and Prevention (Hafsah Iqbal)**
 
 For the demonstration of the **Fork Bomb Attack**, I will show how the system detects and mitigates the attack within a Docker container. The IDPS (Intrusion Detection and Prevention System) monitors the number of processes running on the system and can automatically terminate malicious processes if an abnormal number is detected, preventing a system crash caused by the fork bomb.
 
