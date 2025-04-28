@@ -1,4 +1,37 @@
-# ddos-attacks
+# DDOS-Attacks
+
+
+**Host IDPS to Detect and Prevent Resource Exhaustion Attacks (Syed Danish Hussaini)**
+
+The main aim of this project is to detect, prevent and monitor resource exhaustion attacks using custom Python-based Host IDPS (Intrusion Detection and Prevention System). The IDPS detects high usage process and triggers the prevention mechanism by terminating the process. The operations by the IDPS are logged in a local SQLite database. The logs from these local DB are then hosted on a small Flask web application that displays relevant infomation about the IDPS operations.
+
+This project contains the follwing files:
+- `idps.py`: This Python file contains code that controls the IDPS operations and also hosts the Flask web-application
+- `resExhaus.py`: This Python file contains the resource exhaustion attack code.
+- `resExhaus`: This is same as `resExhaus.py`, but compiled as an executable.
+- `requirements.txt`: This file contains the Python libraires required to execute the IDPS.
+
+**Execution Steps**
+
+1. We first execute the custom IDPS that starts the detecton mechansism and monitors the system memory every second. To execute the custom IDPS, we need to run the Python file as follows:
+   
+        sudo python3 idps.py
+
+2. After we run the idps.py file, we can see the IDPS web application hosted on port 5000 on the local Flask server. You can open a browser on the machine and paste the following URL to see the IDPS monitoring Dashboard:
+   
+        http://localhost:5000  
+
+3. Now that we have IDPS running, we can either execute the Python resExhaus.py attack file or the resExhaus executable. The execution of these files will perform a Resource Exhaustino Attack on the local machine causing it to allocate more resources than it has. Run the following commands to execute the attack:
+   
+        python3 resExhaus.py
+
+   OR
+
+        ./resExhaus
+
+4.  Now that we have executed the attack, the IDPS detects and prevents the attack file by terminating the malicious process and displays a informative TextBox displaying the process ID and name of the malicious process terminated. These operations by IDPS also logged in the local database `oom_killer.db` and reflected on the Flask web-applcation hosting the IDPS monitoring dashboard. 
+
+---
 
 **Fork Bomb Attack Detection and Prevention (Hafsah Iqbal)**
 
