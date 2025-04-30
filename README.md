@@ -120,6 +120,86 @@ The following dependencies will be installed automatically upon building the Doc
 12.	To view the events logged in the database, execute the following command in terminal 2:
     
           sqlite3 ./data/icmp_logs.db "SELECT * FROM icmp_events;"
-   	
+
+**Network-Based Attack on VM - SYN Flood (Claire Asonganyi)**
+
+This project presents a basic Intrusion Detection and Prevention System (IDS/IPS) built to identify and respond to TCP SYN flood attacks within a virtualized Linux environment. The IDS component monitors network traffic for abnormal SYN packet behavior and logs alerts to a MySQL database. The IPS builds on this functionality by automatically blocking identified attackers using system firewall rules.
+
+## Features
+- Real-time monitoring of incoming TCP traffic  
+- SYN flood detection based on configurable thresholds  
+- Logging of detected attacks to a MySQL database  
+- Active blocking of malicious IP addresses via iptables  
+- Optional built-in demo mode for test traffic generation  
+
+## Requirements
+- Python 3.x  
+- Scapy  
+- MySQL Server  
+- Ubuntu or other Linux distribution with iptables  
+- hping3 (for manual testing)  
+
+Install dependencies using:
+```bash
+pip install scapy mysql-connector-python
+```
+
+## File Descriptions
+- `ids_monitor.py`: Detects SYN floods and logs them to MySQL.  
+- `ips_blocker.py`: Detects SYN floods, logs alerts, and blocks malicious IP addresses.  
+- `demoscript.txt`: Step-by-step guide for setup, execution, and testing.  
+
+## How to Run
+
+### Step 1: Clear Existing Firewall Rules
+```bash
+sudo iptables -F
+```
+
+### Step 2: Run IDS Monitor
+```bash
+sudo python3 ids_monitor.py
+```
+
+### Step 3: Check Your VM's IP Address
+Before launching an attack simulation, identify your VM's IP address by running:
+```bash
+ip addr show
+```
+Look for the IP address associated with the interface (typically `enp0s3`) and use it in the next step.
+
+### Step 4: Simulate a SYN Flood (in a new terminal)
+```bash
+sudo hping3 -S -p 80 -c 5 --spoof 192.168.10.88 <your_vm_ip>
+```
+Replace `<your_vm_ip>` with the actual IP address from the previous step.
+
+### Step 5: Check MySQL Logs
+```bash
+mysql -u claire -p
+```
+When prompted, enter the password `testpass` to access the database. Then run:
+```sql
+USE ids_logs;
+SELECT * FROM syn_alerts;
+```
+
+### Step 6: Run IPS Monitor (Detect and Block)
+```bash
+sudo python3 ips_blocker.py
+```
+If no manual attack is launched, the IPS script will automatically generate test SYN packets after a brief delay.
+
+### Step 7: Verify IP Blocking
+```bash
+sudo iptables -L INPUT -n --line-numbers
+```
+
+## Testing Summary
+- Detection occurs after the threshold number of SYN packets from a single IP.  
+- Alerts are stored in the `syn_alerts` table within the `ids_logs` MySQL database.  
+- IP blocking is enforced through `iptables` upon detection.  
+- The solution has been tested with both manual and automatic simulations to verify functionality.
+
 *********************************************************************************************************************************************************************************************
 
